@@ -1,0 +1,339 @@
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+// reset
+@layer base
+  a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video
+    @apply border-0 m-0 p-0 align-baseline
+
+  html
+    font-family: 'Roboto', 'Noto Sans TC', sans-serif
+    scroll-behavior: smooth
+    @apply h-screen bg-black text-zinc-200
+
+  body
+    overscroll-behavior-y: none
+    -webkit-font-smoothing: antialiased
+    scrollbar-width: none
+    @apply flex flex-col leading-normal h-full w-full fixed overflow-hidden
+    @apply md:pt-[env(safe-area-inset-top)]
+
+  :root
+    scrollbar-gutter: stable
+
+  ::-webkit-scrollbar
+    width: 0
+    height: 0
+
+  ::-webkit-scrollbar-track
+    border-radius: 100px
+    margin: 80px 0 5
+
+  ::-webkit-scrollbar-thumb
+    border-radius: 100px
+    background: #3b3b3b
+
+  ::selection
+    color: #fff
+    background: #7300ff !important
+
+  *[disabled]
+    @apply cursor-not-allowed opacity-50
+
+  *
+    box-sizing: border-box
+
+@layer components
+  .card
+    @apply rounded-2xl p-4
+  .link
+    @apply text-zinc-500 hover:text-zinc-200 flex items-center gap-1
+  .placeholder
+    @apply h-3 w-full bg-zinc-500/50 rounded-full animate-pulse will-change-[opacity]
+  .btn
+    @apply p-1 rounded-full grid place-content-center relative
+
+    &:not([class^="text-"]):not([class*= " text-"])
+      @apply text-gray-200
+    &:not([class^="bg-"]):not([class*= " bg-"])
+      @apply md:bg-zinc-700 hover:bg-zinc-600
+    &>svg:not([class^="size"]):not([class*=" size"])
+      @apply h-6 w-6
+    &>img:not([class^="size"]):not([class*=" size"])
+      @apply h-8 w-8
+    &>span
+      @apply leading-none
+    &.btn-sm
+      @apply p-1
+    &.active
+      @apply bg-sky-100 text-sky-500 #{!important}
+  .badge
+    @apply absolute -top-1 -right-1 rounded-full bg-red-500 text-white text-xs grid place-content-center px-1
+    &.bottom
+      @apply top-auto bottom-0
+
+  .overflow-x-auto
+    &::-webkit-scrollbar
+      display: none
+
+  .size-4
+    @apply h-4 w-4 min-w-[1rem] min-h-[1rem]
+  .size-5
+    @apply h-5 w-5 min-w-[1.25rem] min-h-[1.25rem]
+  .size,.size-6
+    @apply h-6 w-6 min-w-[1.5rem] min-h-[1.5rem]
+  .size-7
+    @apply h-7 w-7 min-w-[1.75rem] min-h-[1.75rem]
+  .size-8
+    @apply h-8 w-8 min-w-[2rem] min-h-[2rem]
+  .size-10
+    @apply h-10 w-10 min-w-[2.5rem] min-h-[2.5rem]
+  .size-full
+    @apply h-full w-full min-w-full min-h-full
+
+  .px-page
+    @apply px-4 md:px-6
+  .pl-page
+    @apply pl-4 md:pl-6
+  .pr-page
+    @apply pr-4 md:pr-6
+  .mx-page
+    @apply mx-4 md:mx-6
+  .ml-page
+    @apply ml-4 md:ml-6
+  .mr-page
+    @apply mr-4 md:mr-6
+  .w-page
+    @apply w-4 md:w-6
+  .right-page
+    @apply right-4 md:right-6
+  .left-page
+    @apply left-4 md:left-6
+
+  .px-half-page
+    @apply px-2 md:px-3
+  .pt-safe
+    @apply pt-[env(safe-area-inset-top)] md:pt-0
+  .pb-safe
+    @apply pb-[env(safe-area-inset-bottom)] md:pb-0
+  .top-safe
+    @apply top-[env(safe-area-inset-top)] md:top-0
+  .bottom-safe
+    @apply bottom-[env(safe-area-inset-bottom)] md:bottom-0
+
+  .bg-image
+    @apply bg-center bg-no-repeat bg-cover h-full w-full relative
+
+  .bg-tab
+    @apply bg-base/50 backdrop-blur-lg
+
+  .bg-thead
+    @apply bg-base/20 md:bg-base/40 backdrop-blur-lg
+
+  .title
+    @apply pt-6 pb-2 text-white text-xl md:text-2xl font-bold
+    .subtitle
+      @apply block text-xs md:text-sm font-normal text-zinc-400
+
+  .contentInfo-container
+    @apply flex flex-col md:flex-row flex-wrap items-start md:items-center gap-2 md:gap-x-4 md:gap-y-2
+
+  .header-container
+    @apply flex-none h-[calc(3.5rem+env(safe-area-inset-top))] md:h-[4rem] w-full
+    @apply pt-[env(safe-area-inset-top)] md:pt-0
+    @apply flex items-center gap-2
+    @apply sticky top-0 left-0 z-20
+
+  .header-space
+    @apply -mt-[calc(3.5rem+env(safe-area-inset-top))] md:-mt-[4rem]
+    &:not([class^="no-space"]):not([class*=" no-space"])
+      @apply pt-[calc(3.5rem+env(safe-area-inset-top))] md:pt-[4rem]
+
+  .grid-container
+    @apply px-2 md:px-3 grid grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(var(--min-column-width),1fr))] overflow-hidden
+    &.base-cols-1
+      @apply grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(var(--min-column-width),1fr))]
+    &.base-cols-2
+      @apply grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(var(--min-column-width),1fr))]
+    &.base-cols-3
+      @apply grid-cols-3 md:grid-cols-[repeat(auto-fill,minmax(var(--min-column-width),1fr))]
+    &.row
+      @apply grid-rows-[repeat(var(--row-count),minmax(0,1fr))] auto-rows-[0]
+    &:not([class^="row"]):not([class*=" row"]):not([class*=" gap"])
+      @apply auto-rows-min gap-y-4
+
+  .show-container
+    scrollbar-width: none
+    -ms-overflow-style: none
+    --min-column-width: 190px
+    --max-column-width: 220px
+    @apply px-2 md:px-3
+    @apply overflow-x-auto overflow-y-hidden snap-x
+    @apply grid  grid-flow-col
+
+    @apply auto-cols-[minmax(var(--min-column-width),var(--max-column-width))]
+    // @apply flex
+    // &>*
+    //   @apply w-[calc((100%/2.3))] sm:w-[calc((100%/5.3))] md:w-[calc((100%/5.3))] lg:w-[calc((100%/7))] 2xl:w-[12rem] flex-none
+    // &::-webkit-scrollbar
+    //   display: none
+
+@layer utilities
+  .pc-layout
+    grid-template-rows: 1fr auto
+    grid-auto-columns: auto 1fr auto
+    grid-template-areas: "navbar main aside" "bottom bottom bottom"
+  .phone-layout
+    grid-template-rows: auto
+    grid-auto-columns: auto
+    grid-template-areas: "main"
+// toolkit
+
+.scroll-x
+  scrollbar-width: none
+  -ms-overflow-style: none
+  @apply overflow-x-auto overflow-y-hidden md:overflow-x-visible
+  &::-webkit-scrollbar
+    display: none
+
+.tabbar-space
+  @apply h-32 sticky top-0
+
+.bar-search
+  @apply w-full flex items-center p-1 md:p-2 rounded-full md:w-[30rem] bg-zinc-100 hover:bg-zinc-200 text-gray-500 dark:bg-zinc-700 dark:hover:bg-zinc-600 dark:text-gray-200
+  &.bar-sm
+    @apply p-1
+  .text
+    @apply hidden md:block text-left truncate
+
+.head
+  @apply flex-none h-8 w-8 rounded-full shadow bg-zinc-300 overflow-hidden
+
+.input-comment
+  @apply w-full rounded-lg caret-pink-500 bg-white resize-none p-2
+
+.input
+  @apply appearance-none w-full bg-zinc-100 rounded-lg outline-none p-2
+
+.input-btn
+  @apply p-2 rounded-lg min-w-[4rem] bg-zinc-100
+  &.btn-sm
+    @apply p-1
+  &.active, &.blue
+    @apply bg-sky-100 text-sky-700
+  &.red
+    @apply bg-red-100 text-red-700 min-w-0
+  &.green
+    @apply bg-green-100 text-green-700 min-w-0
+
+// for mark color
+.mark-translate
+  @apply font-bold text-blue-500
+.mark-1
+  @apply rounded-full bg-red-200/80
+.mark-2
+  @apply rounded-full bg-orange-200/80
+.mark-3
+  @apply rounded-full bg-yellow-200/80
+.mark-4
+  @apply rounded-full bg-green-200/80
+.mark-5
+  @apply rounded-full bg-blue-200/80
+.mark-6
+  @apply rounded-full bg-purple-200/80
+
+.default-transition
+  @apply transition-all ease-in-out duration-300
+
+// fix sweetalert2
+.swal2-container.swal2-center > .swal2-popup,
+.swal2-input
+  @apply bg-zinc-800 rounded-lg
+
+.swal2-container .swal2-radio
+  @apply bg-transparent border-none
+
+// move transition
+.move-move, .move-enter-active, .move-leave-active
+  transition: all 0.3s cubic-bezier(.45,-0.01,0,1)
+
+.move-enter-from, .move-leave-to
+  opacity: 0
+
+// .move-leave-active
+  // position: absolute
+
+////////////
+// article
+////////////
+
+.article-html
+  line-break: anywhere
+  @apply overflow-x-hidden whitespace-pre-line
+  *
+    @apply max-w-full
+
+  a
+    @apply text-blue-500 hover:underline
+
+  h1, h2
+    @apply font-bold
+
+  h1
+    @apply text-3xl pb-4
+  h2
+    @apply text-2xl pb-2
+
+  ul
+    @apply list-disc list-inside
+  ol
+    @apply list-decimal list-inside
+  li *
+    @apply inline-block
+
+  .img-inline
+    @apply inline-block w-[5rem] h-auto
+
+  .img-block
+    max-width: 100%
+    width: 500px
+    height: auto
+    margin: 0 auto
+    display: block
+
+  .card-inline
+    cursor: pointer
+    display: inline-flex
+    align-items: flex-end
+    vertical-align: bottom
+
+    img
+      height: 20px
+      width: auto
+      padding-right: 5px
+
+    strong
+      font-weight: bold
+      color: #32c9ff
+      white-space: nowrap
+
+// fix sfx-image-editor
+.SfxMenuItem-root
+  background-color: #121212 !important
+  &:hover
+    background-color: #3f3f46 !important
+
+.SfxInput-root
+  display: inline-flex !important
+  background-color: #121212 !important
+  border: 1px solid rgb(204, 214, 222) !important
+  border-radius: 4px !important
+  height: 30px !important
+
+  &:hover
+    color: #e4e4e7 !important
+
+  input
+    font-size: 14px !important
+    line-height: 16px !important
